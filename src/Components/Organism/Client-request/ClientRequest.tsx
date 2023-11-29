@@ -13,11 +13,11 @@ interface ItemArray {
   postId: string;
   name: string;
   title: string;
-  content: string;
 }
 
 export interface IRepository {
   total_count: number;
+  items: ItemArray[];
 }
 
 export default function ClientRequest() {
@@ -41,7 +41,7 @@ export default function ClientRequest() {
 
   const { data, fetchNextPage, status, hasNextPage } = useInfiniteQuery(
     ["clientList"],
-    ({ pageParam = 20 }) => getData(pageParam),
+    ({ pageParam = 10 }) => getData(pageParam),
     {
       getNextPageParam: (lastPage, allPages) => {
         const maxPage = lastPage.total_count;
@@ -55,7 +55,7 @@ export default function ClientRequest() {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-    const content = data?.pages.map(test => console.log("content", test));
+    console.log(data);
   }, [inView, fetchNextPage, hasNextPage]);
 
   return (
@@ -67,43 +67,47 @@ export default function ClientRequest() {
         {status !== "loading" && status !== "error" && (
           <div>
             {data &&
-              data.pages?.map((listData, pageIndex) => (
-                <React.Fragment key={pageIndex}>
-                  {listData.items.map(item => (
-                    <Link
-                      key={pageIndex}
-                      href={`/fundmanager/clientrequest/${item.postId}`}
-                    >
-                      <BoxStore
-                        boxStyle={BoxStyle.BOX_CORNER_LONG}
-                        style="relative"
+              data.pages?.map((group, pageIndex) => {
+                console.log("group", group);
+                return (
+                  <React.Fragment key={pageIndex}>
+                    {group.map(item => (
+                      <Link
+                        className="mt-2.5"
+                        key={item.postId}
+                        href={`/fundmanager/clientrequest/${item.postId}`}
                       >
-                        <TextStore
-                          textStyle={TextStyle.TEXT_M_24}
-                          style="text-black font-bold"
+                        <BoxStore
+                          boxStyle={BoxStyle.BOX_CORNER_LONG}
+                          style="relative"
                         >
-                          {item.name}
-                        </TextStore>
-                        <TextStore
-                          textStyle={TextStyle.TEXT_R_20}
-                          style="text-slate-500"
-                        >
-                          {item.title}
-                        </TextStore>
-                        <ChevronRight
-                          fill="black"
-                          width="2 in"
-                          height="2m"
-                          className="absolute top-1/3 right-0 "
-                        />
-                      </BoxStore>
-                    </Link>
-                  ))}
-                </React.Fragment>
-              ))}
+                          <TextStore
+                            textStyle={TextStyle.TEXT_M_24}
+                            style="text-black font-bold"
+                          >
+                            {item.name}
+                          </TextStore>
+                          <TextStore
+                            textStyle={TextStyle.TEXT_R_20}
+                            style="text-slate-500"
+                          >
+                            {item.title}
+                          </TextStore>
+                          <ChevronRight
+                            fill="black"
+                            width="2 in"
+                            height="2m"
+                            className="absolute top-1/3 right-0 "
+                          />
+                        </BoxStore>
+                      </Link>
+                    ))}
+                  </React.Fragment>
+                );
+              })}
           </div>
         )}
-        <div ref={ref} />
+        <div ref={ref} className="h-[1rem]" />
       </Section>
     </>
   );
@@ -237,6 +241,51 @@ export default function ClientRequest() {
 //   </div>
 // )}
 // <div ref={ref} />
+// </Section>
+// </>
+// );
+// }
+
+// {status !== "loading" && status !== "error" && (
+//   <div>
+//     {data &&
+//       data.pages?.map((group, pageIndex) => (
+//         <React.Fragment key={pageIndex}>
+//           {group.items?.map(item => (
+//             <Link
+//               key={item.postId}
+//               href={`/fundmanager/clientrequest/${item.postId}`}
+//             >
+//               <BoxStore
+//                 boxStyle={BoxStyle.BOX_CORNER_LONG}
+//                 style="relative"
+//               >
+//                 <TextStore
+//                   textStyle={TextStyle.TEXT_M_24}
+//                   style="text-black font-bold"
+//                 >
+//                   {item.name}
+//                 </TextStore>
+//                 <TextStore
+//                   textStyle={TextStyle.TEXT_R_20}
+//                   style="text-slate-500"
+//                 >
+//                   {item.title}
+//                 </TextStore>
+//                 <ChevronRight
+//                   fill="black"
+//                   width="2 in"
+//                   height="2m"
+//                   className="absolute top-1/3 right-0 "
+//                 />
+//               </BoxStore>
+//             </Link>
+//           ))}
+//         </React.Fragment>
+//       ))}
+//   </div>
+// )}
+// <div ref={ref} className="h-[1rem]" />
 // </Section>
 // </>
 // );
