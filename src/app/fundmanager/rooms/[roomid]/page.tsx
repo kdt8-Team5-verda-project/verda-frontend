@@ -7,12 +7,11 @@ import { useState } from "react";
 
 interface Props {
   params: {
-    roomId: string;
+    roomid: string;
   };
-};
+}
 
-export default function Chat({ params: { roomId } }: Props) {
-
+export default function Chat({ params: { roomid: roomId } }: Props) {
   const [chatMessages, setChatMessages] = useState<any>([]);
 
   return (
@@ -22,7 +21,11 @@ export default function Chat({ params: { roomId } }: Props) {
       </TextStore>
 
       <div className="border-2 opacity-100 h-[calc(100vh_-_140px)] overflow-y-scroll">
-        <ChatRoom roomId={roomId} chatMessages={chatMessages} setChatMessages={setChatMessages} />
+        <ChatRoom
+          roomId={roomId}
+          chatMessages={chatMessages}
+          setChatMessages={setChatMessages}
+        />
       </div>
       <ChatMessageInput setChatMessages={setChatMessages} roomId={roomId} />
     </section>

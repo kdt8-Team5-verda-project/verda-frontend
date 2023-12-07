@@ -43,7 +43,8 @@ export default function ClientRequerstList() {
 
   return (
     <section>
-      <div className="flex items-center flex-col text-black">
+      <TextStore textStyle={TextStyle.TEXT_R_40}>투자문의</TextStore>
+      <div className="flex items-center flex-col text-black mt-5">
         {data ? (
           data.pages.map((page, idx) => {
             return (
