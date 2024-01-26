@@ -1,4 +1,5 @@
 "use client";
+
 //  ? loginData.authToken.accessToken : JSON.parse(localStorage.getItem("loginData") as string).authToken.accessToken
 import { useEffect, Fragment } from "react";
 import Link from "next/link";
@@ -30,7 +31,9 @@ export default function ChatLists() {
     })
     return res.json();
   }
-
+  /**
+   * 무한 스크롤에 맞춰 data fetch 하는 hook
+   */
   const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(
     ['specialChatListUser'],
     ({ pageParam = 0 }) => GetChatList(pageParam),
@@ -41,7 +44,9 @@ export default function ChatLists() {
       },
     }
   )
-
+  /**
+   * 스크롤 마지막에 도달하면 다음 데이터를 불러옴
+   */
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage()
