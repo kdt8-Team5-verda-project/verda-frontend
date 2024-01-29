@@ -169,7 +169,7 @@
   <tr>
    <td align="center">배포</td>
    <td>
-      <span><img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Netlify&logoColor=white"/></span>&nbsp
+      <span><img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white"/></span>&nbsp
    </td>
   </tr>
 </table>
