@@ -163,7 +163,7 @@
    <td align="center">컨벤션</td>
    <td>
       <span><img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=white"/></span>&nbsp
-      <span><img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=Prettier&logoColor=white"/></span>&nbsp
+      <span><img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white"/></span>&nbsp
    </td>
   </tr>
   <tr>
