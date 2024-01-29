@@ -244,7 +244,7 @@ verda/src
 │  │  │  └─Square
 │  │  ├─Icon
 │  │  └─Text
-│  ├─Molecure
+│  ├─Molecule
 │  │  ├─Button
 │  │  │  ├─Button
 │  │  │  ├─Link
